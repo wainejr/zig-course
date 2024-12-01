@@ -28,8 +28,10 @@ pub fn main() void {
     // Caso tentassemos acessar foobar aqui, haveria um erro
     // ERRO: std.debug.print("foobar={}\n", .{ foobar});
 
+    // Sintaxe para declarar uma array de tamanho constante
     var my_array: [4]i32 = .{ 0, 1, 2, 3 };
+    // Como alterar uma array em Zig
     my_array[1] += 10;
-
+    // Imprimindo uma array em Zig
     std.debug.print("my_array={any}\n", .{my_array});
 }
