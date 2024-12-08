@@ -3,7 +3,8 @@ const std = @import("std");
 pub fn main() !void {
 
     // Strings em zig são arrays de bytes (u8) terminadas em 0 (null terminated)
-    const my_str = "Hello World!"; // deve se utilizar aspas dupla pra strings
+    const my_str = "Hello World!";
+    // deve se utilizar aspas dupla pra strings
 
     // Para imprimir strings, usar {s}
     std.debug.print("my_str: {s}\n\n", .{my_str});
@@ -24,6 +25,8 @@ pub fn main() !void {
 
     // Também podemos fazer strings de várias linhas nativamente
     const multiline_string =
+        \\Timbalanda - Beija Flor
+        \\
         \\Eu fui embora, meu amor chorou
         \\Eu fui embora, meu amor chorou
         \\Eu fui embora, meu amor chorou
@@ -51,12 +54,13 @@ pub fn main() !void {
     // Imprimindo a string no vetor
     // giant_str aqui é um slice desse vetor
     const giant_str = try std.fmt.bufPrint(&giant_array, "{s}", .{"abc"});
-    std.debug.print("giant_array\nstring full: {s}\narray: {s}\n\n", .{ giant_str, giant_array });
+    const same_slice = giant_array[0..3];
+    std.debug.print("giant_array\nstring full: {s} ({})\n same: {s}\narray: {s} ({})\n\n", .{ giant_str, giant_str.len, same_slice, giant_array, giant_array.len });
 
     // Podemos também usar funções para parse de strings
     const my_int = try std.fmt.parseInt(u32, "42", 10);
     const my_float = try std.fmt.parseFloat(f32, "3.14159265359");
-    std.debug.print("my int {d} my float {d:.2}", .{ my_int, my_float });
+    std.debug.print("my int {d} my float {d:.2}\n", .{ my_int, my_float });
 
     // Lista completa de modificadores
     // https://ziglang.org/documentation/master/std/#std.fmt.format
@@ -79,5 +83,4 @@ pub fn main() !void {
     // Sobre formatação
     // https://ziglang.org/documentation/master/std/#std.fmt.format
     // The format string must be comptime-known and may contain placeholders following this format: {[argument][specifier]:[fill][alignment][width].[precision]}
-
 }
